@@ -1,0 +1,7 @@
+{
+  "block.skeletonspawnersmod.skeleton_spawner": "Skeleton Spawner",
+  "item.skeletonspawnersmod.skeleton_spawner": "Skeleton Spawner",
+  "gui.skeletonspawnersmod.title": "Skeleton Spawner GUI",
+  "gui.skeletonspawnersmod.collect_loot": "Collect Loot",
+  "gui.skeletonspawnersmod.drop_loot": "Drop Loot"
+}

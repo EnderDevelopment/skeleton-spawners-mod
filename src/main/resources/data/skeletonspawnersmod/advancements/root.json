@@ -1,0 +1,23 @@
+{
+  "criteria": {
+    "impossible": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "display": {
+    "icon": {
+      "item": "skeletonspawnersmod:skeleton_spawner"
+    },
+    "title": "Skeleton Spawner Mod",
+    "description": "Install the Skeleton Spawner Mod",
+    "background": "minecraft:textures/block/stone.png",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "requirements": [
+    [
+      "impossible"
+    ]
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "id": "skeletonspawnersmod",
+  "version": "${version}",
+  "name": "Skeleton Spawners Mod",
+  "description": "A mod that enhances skeleton spawners with GUI and loot collection features.",
+  "authors": ["YourName"],
+  "contact": {
+    "homepage": "https://example.com",
+    "sources": "https://github.com/yourusername/skeletonspawnersmod"
+  },
+  "license": "MIT",
+  "icon": "assets/skeletonspawnersmod/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "com.aqdewagt.skeletonspawnersmod.SkeletonSpawnersMod"
+    ]
+  },
+  "mixins": [],
+  "depends": {
+    "fabricloader": ">=0.14.0",
+    "minecraft": "1.21.4",
+    "fabric-api": "*"
+  }
+}

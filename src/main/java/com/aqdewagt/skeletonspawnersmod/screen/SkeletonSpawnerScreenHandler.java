@@ -1,0 +1,68 @@
+package com.aqdewagt.skeletonspawnersmod.screen;
+
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.inventory.Inventory;
+import net.minecraft.item.ItemStack;
+import net.minecraft.screen.ScreenHandler;
+import net.minecraft.screen.ScreenHandlerType;
+import net.minecraft.screen.slot.Slot;
+
+public class SkeletonSpawnerScreenHandler extends ScreenHandler {
+    private final Inventory inventory;
+
+    public SkeletonSpawnerScreenHandler(int syncId, PlayerInventory playerInventory) {
+        this(syncId, playerInventory, new SimpleInventory(9));
+    }
+
+    public SkeletonSpawnerScreenHandler(int syncId, PlayerInventory playerInventory, Inventory inventory) {
+        super(ScreenHandlerType.GENERIC_9X1, syncId);
+        this.inventory = inventory;
+        inventory.onOpen(playerInventory.player);
+        int i = (9 - 1) * 18;
+
+        for (int j = 0; j < 9; ++j) {
+            this.addSlot(new Slot(inventory, j, 8 + j * 18, 20));
+        }
+
+        for (int j = 0; j < 3; ++j) {
+            for (int k = 0; k < 9; ++k) {
+                this.addSlot(new Slot(playerInventory, k + j * 9 + 9, 8 + k * 18, j * 18 + 51));
+            }
+        }
+
+        for (int j = 0; j < 9; ++j) {
+            this.addSlot(new Slot(playerInventory, j, 8 + j * 18, 109));
+        }
+    }
+
+    @Override
+    public boolean canUse(PlayerEntity player) {
+        return this.inventory.canPlayerUse(player);
+    }
+
+    @Override
+    public ItemStack transferSlot(PlayerEntity player, int index) {
+        ItemStack itemStack = ItemStack.EMPTY;
+        Slot slot = this.slots.get(index);
+        if (slot != null && slot.hasStack()) {
+            ItemStack itemStack2 = slot.getStack();
+            itemStack = itemStack2.copy();
+            if (index < this.inventory.size()) {
+                if (!this.insertItem(itemStack2, this.inventory.size(), this.slots.size(), true)) {
+                    return ItemStack.EMPTY;
+                }
+            } else if (!this.insertItem(itemStack2, 0, this.inventory.size(), false)) {
+                return ItemStack.EMPTY;
+            }
+
+            if (itemStack2.isEmpty()) {
+                slot.setStack(ItemStack.EMPTY);
+            } else {
+                slot.markDirty();
+            }
+        }
+
+        return itemStack;
+    }
+}
